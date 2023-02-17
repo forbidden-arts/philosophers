@@ -5,14 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/17 12:18:51 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/02/17 12:19:18 by dpalmer          ###   ########.fr       */
+/*   Created: 2023/02/13 10:06:59 by dpalmer           #+#    #+#             */
+/*   Updated: 2023/02/13 10:09:36 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	print_error(char *str)
+int	exit_error(char *str)
 {
 	printf("Error:\n%s\n", str);
 	return (1);

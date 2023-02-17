@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/17 12:13:24 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/02/17 12:46:49 by dpalmer          ###   ########.fr       */
+/*   Created: 2023/02/10 13:16:18 by dpalmer           #+#    #+#             */
+/*   Updated: 2023/02/17 14:18:43 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,13 @@
 
 int	main(int argc, char **argv)
 {
-	t_dm	dm;
+	t_game	game;
 
 	if (argc < 5 || argc > 6)
-		return (print_error("Usage: <# of philo> <die> <eat> <sleep> [count]"));
-	if (parse_args(&dm, argv))
-		return (print_error("Invalid values."));
+		return (exit_error("Invocation error."));
+	if (!game_init(&game, argv))
+		return (exit_error("Error initializing arguments."));
+	if (!start_game(&game))
+		return (exit_error("Error initializing threads"));
 	return (0);
 }

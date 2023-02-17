@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/17 12:16:39 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/02/17 12:16:41 by dpalmer          ###   ########.fr       */
+/*   Created: 2023/02/13 07:33:50 by dpalmer           #+#    #+#             */
+/*   Updated: 2023/02/14 14:31:50 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,3 +37,5 @@ int	ft_atoi(const char *str)
 	}
 	return ((int)sum * -sign);
 }
+
+

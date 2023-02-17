@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/17 09:11:23 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/02/17 12:28:14 by dpalmer          ###   ########.fr       */
+/*   Created: 2023/02/10 13:15:37 by dpalmer           #+#    #+#             */
+/*   Updated: 2023/02/17 15:08:21 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,49 +19,63 @@
 # include <pthread.h>
 # include <sys/time.h>
 
-/* Struct definitions. Because pthread can only take a single argument, this
-* go around, we're going to create a supervisor structure that contains all
-* of the other ones. This supervisor is going to be the DM.*/
+// Stupid prototype call because of the circular reference issue below.
+// struct	s_game;
 
-typedef struct s_game
-{
-	int				philo_count;
-	int				tt_die;
-	int				tt_eat;
-	int				tt_sleep;
-	int				dead;
-	int				done;
-	unsigned long	start;
-}	t_game;
-
+/*
+* Due to the limitations of pthread_create only taking a single argument,
+* we are going to create a circular reference in Philo so that we can pass
+* rules of the game when we invoke threads. Looking for better solution.
+*/
 typedef struct s_philo
 {
 	int				id;
-	int				x_eaten;
+	int				times_eaten;
 	int				fork_one;
 	int				fork_two;
 	unsigned long	last_meal;
 	pthread_t		thread_id;
+	struct s_game	*game;
 }					t_philo;
 
-typedef struct s_dm
+typedef struct s_game
 {
-	t_game			game;
-	t_philo			philo[250];
+	int				philo_count;
+	int				time_to_die;
+	int				time_to_eat;
+	int				time_to_slp;
+	int				m_c;
+	int				dead;
+	int				all_done;
+	unsigned long	start;
 	pthread_mutex_t	fork[250];
-	pthread_mutex_t	eating;
 	pthread_mutex_t	output;
-}	t_dm;
+	pthread_mutex_t	eating;
+	t_philo			philo[250];
+}					t_game;
 
-/*			PROTOTYPES				*/
+/*		Prototypes			*/
 
-/*			ERROR HANDLING			*/
-int	print_error(char *str);
+/*		Math Utils			*/
+int				ft_atoi(const char *str);
 
-/* 			MATH UTILS				*/
-int	ft_atoi(const char *str);
+/*		Time				*/
+unsigned long	get_time(void);
+int				time_diff(unsigned long last, unsigned long now);
+void			smart_sleep(unsigned long time);
 
-/*			PARSE ARGS				*/
-int	parse_args(t_dm *dm, char **argv);
+/*		Error Handling		*/
+int				exit_error(char *str);
+
+/*		Init				*/
+int				game_init(t_game *game, char **argv);
+
+/*		Action				*/
+void			do_action(t_game *game, int id, char *str);
+int				eat(t_philo *philo);
+void			go_fork_yourself(t_philo *philo);
+
+/*		Game				*/
+int				start_game(t_game *game);
 
 #endif

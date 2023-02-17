@@ -5,10 +5,11 @@
 #                                                     +:+ +:+         +:+      #
 #    By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/02/17 09:10:12 by dpalmer           #+#    #+#              #
-#    Updated: 2023/02/17 12:47:05 by dpalmer          ###   ########.fr        #
+#    Created: 2023/02/10 13:10:37 by dpalmer           #+#    #+#              #
+#    Updated: 2023/02/14 07:39:29 by dpalmer          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
 
 NAME		=	philo
 
@@ -31,10 +32,13 @@ CYAN = \033[0;96m
 
 #Sources
 
-SRC_FILES	= 	main				\
-				error_handling		\
+SRC_FILES	=	main				\
 				math_utils			\
-				parse_args
+				time				\
+				error_handling		\
+				init				\
+				action				\
+				game
 
 
 SRC 		= 	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
@@ -45,7 +49,7 @@ OBJ 		= 	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))
 all:		$(NAME)
 
 $(NAME):	$(OBJ)
-			@$(CC) $(CFLAGS) $(ADDON) -o $(NAME) $(OBJ)
+			@$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(ADDON)
 			@echo "$(B_MAGENTA)$(NAME) compiled successfully$(C_RESET)"
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c
