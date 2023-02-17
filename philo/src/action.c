@@ -6,7 +6,7 @@
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 18:26:40 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/02/17 15:24:19 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/02/17 16:16:33 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	do_action(t_game *game, int id, char *str)
 {
 	pthread_mutex_lock(&(game->output));
 	if (!game->dead)
-		printf("[%lu ms] Philosopher %i %s.\n", get_time() - game->start,
+		printf("[%5lu ms] Philosopher %i %s.\n", get_time() - game->start,
 			id + 1, str);
 	pthread_mutex_unlock(&(game->output));
 }
@@ -37,9 +37,9 @@ int	eat(t_philo *philo)
 	pthread_mutex_unlock(&(philo->game->eating));
 	smart_sleep(philo->game->time_to_eat);
 	pthread_mutex_unlock(&(philo->game->fork[philo->fork_two]));
+	pthread_mutex_unlock(&(philo->game->fork[philo->fork_one]));
 	philo->times_eaten += 1;
 	i++;
-	pthread_mutex_unlock(&(philo->game->fork[philo->fork_one]));
 	return (i);
 }
 
@@ -49,19 +49,14 @@ int	eat(t_philo *philo)
 */
 void	go_fork_yourself(t_philo *philo)
 {
-	if (philo->id == 0 || philo->id == philo->game->philo_count -1)
-	{
-		philo->fork_one = 0;
-		philo->fork_two = philo->game->philo_count - 1;
-	}
-	else if (philo->id % 2)
+	if (philo->id % 2)
 	{
 		philo->fork_one = philo->id;
-		philo->fork_two = philo->id + 1;
+		philo->fork_two = (philo->id + 1) % philo->game->philo_count;
 	}
 	else
 	{
-		philo->fork_one = philo->id + 1;
+		philo->fork_one = (philo->id + 1) % philo->game->philo_count;
 		philo->fork_two = philo->id;
 	}
 }
