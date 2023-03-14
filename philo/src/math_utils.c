@@ -6,7 +6,7 @@
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 07:33:50 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/02/14 14:31:50 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/03/14 14:32:13 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,3 @@ int	ft_atoi(const char *str)
 	}
 	return ((int)sum * -sign);
 }
-
-
