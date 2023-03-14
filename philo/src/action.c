@@ -6,12 +6,14 @@
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 18:26:40 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/02/17 16:16:33 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/03/14 11:43:38 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
+/* Unified output and action function. Utilizes a MutEx to avoid printing
+* errors, and formats the output for standardization purposes. */
 void	do_action(t_game *game, int id, char *str)
 {
 	pthread_mutex_lock(&(game->output));
@@ -21,6 +23,9 @@ void	do_action(t_game *game, int id, char *str)
 	pthread_mutex_unlock(&(game->output));
 }
 
+/* Driving function for philosopher actions. Forks are assigned via function
+* and each philosopher attempts to take two forks and eat. Numerical return
+* value is ignored, it is only used as a true/false check. */
 int	eat(t_philo *philo)
 {
 	int	i;

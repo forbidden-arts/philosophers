@@ -6,7 +6,7 @@
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 10:49:11 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/02/17 14:23:25 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/03/14 11:49:13 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ static void	philo_init(t_game *game)
 	}
 }
 
-/* Creates MutExes for forks, writing output, and eating. */
+/* Creates MutExes for forks, writing output, and eating.
+* Returns 1 on success. */
 static int	mutex_init(t_game *game)
 {
 	int	i;
@@ -46,7 +47,8 @@ static int	mutex_init(t_game *game)
 	return (1);
 }
 
-/* Takes the game as a pointer and assigns value. On success, returns 1	*/
+/* Takes the game as a pointer and assigns values from the given arguments.
+* On success, returns 1	*/
 int	game_init(t_game *game, char **argv)
 {
 	game->philo_count = ft_atoi(argv[1]);

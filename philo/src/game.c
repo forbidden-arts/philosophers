@@ -6,12 +6,13 @@
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 07:39:11 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/02/17 15:53:30 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/03/14 11:47:14 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
+/* Unwinds all the threads and MutExes once the game is complete. */
 static void	end_game(t_game *game, t_philo *philo)
 {
 	int	i;
@@ -27,6 +28,8 @@ static void	end_game(t_game *game, t_philo *philo)
 	pthread_mutex_destroy(&(game->output));
 }
 
+/* Checks the status of all of the philosophers and ends the game if any
+* have died, or if they all have eaten the required amount of times. */
 static void	check_end(t_game *game)
 {
 	int	i;
@@ -55,6 +58,8 @@ static void	check_end(t_game *game)
 	}
 }
 
+/* Once a thread is created, the philosopher will attempt to eat and sleep,
+* and will think while waiting to do either of those previous two actions. */
 static void	*start_thread(void *tmp)
 {
 	t_philo	*philo;
@@ -74,7 +79,9 @@ static void	*start_thread(void *tmp)
 	return (NULL);
 }
 
-/* Creates a thread for each philo and begins the game. */
+/* Creates a thread for each philo and begins the game. In the case of a single
+* philosopher (which is a guaranteed death), this function waits the necessary
+* time and kills the philosopher, instead of creating threads. */
 int	start_game(t_game *game)
 {
 	int	i;
