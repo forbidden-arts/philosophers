@@ -6,7 +6,7 @@
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 07:39:11 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/03/14 15:21:15 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/03/14 17:10:32 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static void	check_end(t_game *game)
 		i = 0;
 		while (game->m_c && game->philo[i].times_eaten >= game->m_c)
 			i++;
-		if (i == game->philo_count)
+		if (i >= game->philo_count)
 			game->all_done = 1;
 	}
 }
