@@ -6,7 +6,7 @@
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 18:26:40 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/03/14 11:43:38 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/03/14 15:16:07 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ void	do_action(t_game *game, int id, char *str)
 {
 	pthread_mutex_lock(&(game->output));
 	if (!game->dead)
-		printf("[%5lu ms] Philosopher %i %s.\n", get_time() - game->start,
-			id + 1, str);
+		printf("[%5lu ms] Philosopher %i %s. Eaten: %i\n", get_time() - game->start,
+			id + 1, str, game->philo->times_eaten);
 	pthread_mutex_unlock(&(game->output));
 }
 

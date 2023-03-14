@@ -6,7 +6,7 @@
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 13:16:18 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/02/17 14:18:43 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/03/14 15:22:33 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ int	main(int argc, char **argv)
 
 	if (argc < 5 || argc > 6)
 		return (exit_error("Invocation error."));
+	if (argc == 6 && ft_atoi(argv[5]) == 0)
+		return (0);
 	if (!game_init(&game, argv))
 		return (exit_error("Error initializing arguments."));
 	if (!start_game(&game))

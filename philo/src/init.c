@@ -6,7 +6,7 @@
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 10:49:11 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/03/14 11:49:13 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/03/14 15:19:43 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ int	game_init(t_game *game, char **argv)
 	game->time_to_slp = ft_atoi(argv[4]);
 	game->dead = 0;
 	game->all_done = 0;
+	game->m_c = 0;
 	if (game->philo_count < 1 || game->time_to_die < 0 || game->time_to_eat < 0
 		|| game->time_to_slp < 0 || game->philo_count > 250)
 		return (0);
