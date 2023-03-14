@@ -6,7 +6,7 @@
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 13:15:37 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/02/17 15:08:21 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/03/14 12:34:44 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,6 @@
 # include <unistd.h>
 # include <pthread.h>
 # include <sys/time.h>
-
-// Stupid prototype call because of the circular reference issue below.
-// struct	s_game;
 
 /*
 * Due to the limitations of pthread_create only taking a single argument,
