@@ -6,10 +6,11 @@
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 08:06:57 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/03/14 11:53:09 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/03/23 12:29:27 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <sys/time.h>
 #include "philo.h"
 
 /* Returns the current time as unsigned long in milliseconds since the epoch. */
