@@ -6,7 +6,7 @@
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 09:46:38 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/03/30 12:07:48 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/03/30 18:54:11 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	arg_error(int argc, char **argv)
 		print_error("Only digits are accepted.");
 	if (ft_atoi(argv[1]) == 0 || ft_atoi(argv[2]) == 0
 		|| ft_atoi(argv[3]) == 0 || ft_atoi(argv[4]) == 0)
-		print_error("Negative numbers not allowed.");
+		print_error("Arguments must be greater than zero.");
 }
 
 void	parse_args(int argc, char **argv, t_rules *rules)
