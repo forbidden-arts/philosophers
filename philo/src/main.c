@@ -6,7 +6,7 @@
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 09:34:31 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/03/30 12:08:16 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/03/30 14:41:34 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ int	main(int argc, char **argv)
 
 	check_args(argc, argv);
 	parse_args(argc, argv, &rules);
-	start(&rules);
+	if (rules.all_done)
+		start(&rules);
 	return (0);
 }
 
