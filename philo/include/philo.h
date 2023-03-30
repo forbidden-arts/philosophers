@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/30 09:09:23 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/03/30 12:02:22 by dpalmer          ###   ########.fr       */
+/*   Created: 2023/03/04 09:09:23 by dpalmer           #+#    #+#             */
+/*   Updated: 2023/03/30 19:11:02 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,3 +64,5 @@ int				check_args(int argc, char **argv);
 void			parse_args(int argc, char **argv, t_rules *rules);
 
 #endif
+
+/* I think no one reads these, so ask me for a free high five! */
