@@ -6,7 +6,7 @@
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 09:34:31 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/03/30 11:46:15 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/03/30 12:08:16 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,59 +14,59 @@
 
 int	main(int argc, char **argv)
 {
-	t_argv	arg;
+	t_rules	rules;
 
 	check_args(argc, argv);
-	parse_args(argc, argv, &arg);
-	start(&arg);
+	parse_args(argc, argv, &rules);
+	start(&rules);
 	return (0);
 }
 
 void	*alive(void *alive)
 {
 	t_philo		*philo;
-	t_argv		*argv;
+	t_rules		*rules;
 	int			i;
 
 	i = 0;
 	philo = (t_philo *)alive;
-	argv = philo->p_arg;
-	if (philo->nb % 2 == 0)
+	rules = philo->p_rules;
+	if (philo->id % 2 == 0)
 		usleep(1500);
-	pthread_mutex_lock(&(argv->eat));
-	while (!(argv->is_dead) && !(argv->all_ate))
+	pthread_mutex_lock(&(rules->eat));
+	while (!(rules->is_dead) && !(rules->all_ate))
 	{
-		pthread_mutex_unlock(&(argv->eat));
+		pthread_mutex_unlock(&(rules->eat));
 		eat(philo);
-		pthread_mutex_lock(&(argv->eat));
-		print_action(argv, philo->nb, "is sleeping");
-		pthread_mutex_unlock(&(argv->eat));
-		smart_sleep(argv->time_to_slp, argv);
-		pthread_mutex_lock(&(argv->eat));
-		print_action(argv, philo->nb, "is thinking");
+		pthread_mutex_lock(&(rules->eat));
+		print_action(rules, philo->id, "is sleeping");
+		pthread_mutex_unlock(&(rules->eat));
+		smart_sleep(rules->time_to_slp, rules);
+		pthread_mutex_lock(&(rules->eat));
+		print_action(rules, philo->id, "is thinking");
 		i++;
 	}
-	pthread_mutex_unlock(&(argv->eat));
+	pthread_mutex_unlock(&(rules->eat));
 	return (NULL);
 }
 
-void	start(t_argv *arg)
+void	start(t_rules *rules)
 {
 	int		i;
-	t_philo	*ph;
+	t_philo	*philo;
 
 	i = 0;
-	ph = arg->philosophers;
-	arg->start_time = get_time();
-	while (i < arg->nb_philo)
+	philo = rules->philosophers;
+	rules->start_time = get_time();
+	while (i < rules->id_philo)
 	{
-		if (pthread_create(&(ph[i].thread_nb), NULL, alive, &(ph[i])))
-			print_error("Unable to create a thread");
-		pthread_mutex_lock(&(arg->eat));
-		ph[i].last_eat = get_time();
-		pthread_mutex_unlock(&(arg->eat));
+		if (pthread_create(&(philo[i].thread_id), NULL, alive, &(philo[i])))
+			print_error("Thread error.");
+		pthread_mutex_lock(&(rules->eat));
+		philo[i].last_eat = get_time();
+		pthread_mutex_unlock(&(rules->eat));
 		i++;
 	}
-	is_dead(arg, ph);
-	exit_launcher(arg);
+	is_dead(rules, philo);
+	exit_launcher(rules);
 }

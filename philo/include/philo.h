@@ -6,7 +6,7 @@
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 09:09:23 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/03/30 11:42:30 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/03/30 12:02:22 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,23 +19,23 @@
 # include <sys/time.h>
 # include <pthread.h>
 
-struct			s_argv;
+struct			s_rules;
 
 typedef struct s_philo
 {
-	int				nb;
-	int				nb_ate;
+	int				id;
+	int				id_ate;
 	int				l_fork;
 	int				r_fork;
 	long long		last_eat;
-	pthread_t		thread_nb;
-	struct s_argv	*p_arg;
+	pthread_t		thread_id;
+	struct s_rules	*p_rules;
 }			t_philo;
 
-typedef struct s_argv
+typedef struct s_rules
 {
 	int				is_dead;
-	int				nb_philo;
+	int				id_philo;
 	int				all_ate;
 	int				all_done;
 	long int		time_to_die;
@@ -46,21 +46,21 @@ typedef struct s_argv
 	pthread_mutex_t	writing;
 	pthread_mutex_t	forks[250];
 	t_philo			philosophers[250];
-}			t_argv;
+}			t_rules;
 
 void			arg_error(int argc, char **argv);
 void			print_error(char *str);
-void			start(t_argv *arg);
-int				init(t_argv *argv);
+void			start(t_rules *rules);
+int				init(t_rules *rules);
 void			eat(t_philo *philo);
-void			exit_launcher(t_argv *arg);
+void			exit_launcher(t_rules *rules);
 long long		get_time(void);
 void			*alive(void *alive);
-void			is_dead(t_argv *arg, t_philo *ph);
-void			smart_sleep(long long time, t_argv *arg);
-void			print_action(t_argv *arg, int nb, char *msg);
+void			is_dead(t_rules *rules, t_philo *ph);
+void			smart_sleep(long long time, t_rules *rules);
+void			print_action(t_rules *rules, int id, char *msg);
 int				ft_atoi(char *str);
 int				check_args(int argc, char **argv);
-void			parse_args(int argc, char **argv, t_argv *arg);
+void			parse_args(int argc, char **argv, t_rules *rules);
 
 #endif

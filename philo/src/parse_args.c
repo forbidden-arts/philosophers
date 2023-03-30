@@ -6,7 +6,7 @@
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 09:46:38 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/03/30 11:42:30 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/03/30 12:07:48 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,16 @@ void	arg_error(int argc, char **argv)
 		print_error("Negative numbers not allowed.");
 }
 
-void	parse_args(int argc, char **argv, t_argv *arg)
+void	parse_args(int argc, char **argv, t_rules *rules)
 {
-	arg->nb_philo = ft_atoi(argv[1]);
-	arg->time_to_die = ft_atoi(argv[2]);
-	arg->time_to_eat = ft_atoi(argv[3]);
-	arg->time_to_slp = ft_atoi(argv[4]);
+	rules->id_philo = ft_atoi(argv[1]);
+	rules->time_to_die = ft_atoi(argv[2]);
+	rules->time_to_eat = ft_atoi(argv[3]);
+	rules->time_to_slp = ft_atoi(argv[4]);
 	if (argc == 6)
-		arg->all_done = ft_atoi(argv[5]);
+		rules->all_done = ft_atoi(argv[5]);
 	else
-		arg->all_done = -1;
-	if (init(arg) == 1)
-		print_error("Init failed");
+		rules->all_done = -1;
+	if (init(rules) == 1)
+		print_error("Init failed.");
 }
