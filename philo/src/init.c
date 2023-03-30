@@ -6,7 +6,7 @@
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 09:34:24 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/03/30 11:17:35 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/03/30 11:34:57 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	init(t_argv *arg)
 	arg->is_dead = 0;
 	arg->all_ate = 0;
 	if (arg->nb_philo > 250)
-		showerror("You can't use more than 250 philosophers");
+		print_error("Too many philosophers.");
 	if (pthread_mutex_init(&(arg->writing), NULL))
 		return (1);
 	if (pthread_mutex_init(&(arg->eat), NULL))
@@ -39,7 +39,7 @@ int	init(t_argv *arg)
 	return (0);
 }
 
-void	showerror(char *str)
+void	print_error(char *str)
 {
 	printf("Error: %s.", str);
 	exit(0);

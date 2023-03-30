@@ -6,11 +6,20 @@
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 09:34:21 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/03/30 11:17:39 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/03/30 11:39:30 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+void	print_action(t_argv *arg, int nb, char *msg)
+{
+	pthread_mutex_lock(&(arg->writing));
+	if (!(arg->is_dead))
+		printf("[%5lld ms] Philosopher %i %s.\n",
+			get_time() - arg->start_time, nb, msg);
+	pthread_mutex_unlock(&(arg->writing));
+}
 
 void	eat(t_philo *philo)
 {
@@ -27,7 +36,7 @@ void	eat(t_philo *philo)
 	print_action(arg, philo->nb, "is eating");
 	philo->last_eat = get_time();
 	pthread_mutex_unlock(&(arg->eat));
-	smart_sleep(arg->time_te, arg);
+	smart_sleep(arg->time_to_eat, arg);
 	pthread_mutex_lock(&(arg->eat));
 	(philo->nb_ate)++;
 	pthread_mutex_unlock(&(arg->eat));

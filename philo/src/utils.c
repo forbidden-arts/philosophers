@@ -6,7 +6,7 @@
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 09:34:37 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/03/30 10:13:55 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/03/30 11:33:33 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,15 +46,6 @@ int	check_args(int argc, char **argv)
 		i++;
 	}
 	return (0);
-}
-
-void	print_action(t_argv *arg, int nb, char *msg)
-{
-	pthread_mutex_lock(&(arg->writing));
-	if (!(arg->is_dead))
-		printf("[%5lld ms] Philosopher %i %s.\n",
-			get_time() - arg->first_time, nb, msg);
-	pthread_mutex_unlock(&(arg->writing));
 }
 
 long long	get_time(void)
