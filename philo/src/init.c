@@ -6,7 +6,7 @@
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 09:34:24 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/03/30 09:53:42 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/03/30 11:17:35 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	init(t_argv *arg)
 		showerror("You can't use more than 250 philosophers");
 	if (pthread_mutex_init(&(arg->writing), NULL))
 		return (1);
-	if (pthread_mutex_init(&(arg->eating), NULL))
+	if (pthread_mutex_init(&(arg->eat), NULL))
 		return (1);
 	while (--i >= 0)
 	{
@@ -63,6 +63,6 @@ void	exit_launcher(t_argv *arg)
 	while (++i < arg->nb_philo)
 		pthread_mutex_destroy(&(arg->forks[i]));
 	pthread_mutex_destroy(&(arg->writing));
-	pthread_mutex_destroy(&(arg->eating));
+	pthread_mutex_destroy(&(arg->eat));
 	exit (0);
 }
