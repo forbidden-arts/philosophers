@@ -5,52 +5,62 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/23 12:20:31 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/03/23 13:04:30 by dpalmer          ###   ########.fr       */
+/*   Created: 2023/03/30 09:09:23 by dpalmer           #+#    #+#             */
+/*   Updated: 2023/03/30 10:08:33 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_H
 # define PHILO_H
 
+# include <unistd.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <sys/time.h>
 # include <pthread.h>
+
+struct			s_argv;
 
 typedef struct s_philo
 {
-	int				id;
-	int				times_eaten;
-	int				fork_one;
-	int				fork_two;
-	unsigned long	last_meal;
-	pthread_t		thread_id;
-}	t_philo;
+	pthread_t		thread_nb;
+	int				nb;
+	int				nb_ate;
+	int				l_fork;
+	int				r_fork;
+	long long		last_eat;
+	struct s_argv	*p_arg;
+}			t_philo;
 
-typedef struct s_game
+typedef struct s_argv
 {
-	int				count;
-	int				time_to_die;
-	int				time_to_eat;
-	int				time_to_slp;
-	int				max_eat;
-	int				dead;
-	unsigned long	start;
-	t_philo			philo[250];
-	pthread_mutex_t	fork[250];
-	pthread_mutex_t	output;
-	pthread_mutex_t	death;
-}	t_game;
+	pthread_mutex_t	eating;
+	pthread_mutex_t	forks[250];
+	pthread_mutex_t	writing;
+	long long		first_time;
+	int				is_dead;
+	int				nb_philo;
+	int				all_ate;
+	int				time_de;
+	long int		time_td;
+	long int		time_te;
+	long int		time_ts;
+	t_philo			philosophers[250];
+}			t_argv;
 
-/*				MATH				*/
-int				ft_atoi(const char *str);
+void			checkargs(int argc, char **argv);
+void			showerror(char *str);
+void			starter(t_argv *arg);
+int				init(t_argv *argv);
+void			eating(t_philo *philo);
+void			exit_launcher(t_argv *arg);
+long long		get_time(void);
+void			*life(void *life);
+void			is_dead(t_argv *arg, t_philo *ph);
+void			sleep_time(long long time, t_argv *arg);
+void			print_action(t_argv *arg, int nb, char *msg);
+int				ft_atoi(char *str);
+int				check_args(int argc, char **argv);
+void			parse_args(int argc, char **argv, t_argv *arg);
 
-/*				TIME				*/
-unsigned long	get_time(void);
-int				time_diff(unsigned long last, unsigned long now);
-void			smart_sleep(unsigned long time);
-
-/*				ERROR HANDLING		*/
-int				exit_error(char *str);
-
-
-
-#endif
+#endif 
