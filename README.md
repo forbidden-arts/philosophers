@@ -1,4 +1,4 @@
-# push_swap
+# Philosophers
 ![dpalmer's 42 stats](https://badge42.vercel.app/api/v2/cli5pb141011308mh1fmi5qrq/stats?cursusId=21&coalitionId=271)
 
 ![Achievement Unlocked!](./assets/philosopherse.png)
