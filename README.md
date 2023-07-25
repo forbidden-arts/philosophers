@@ -14,7 +14,7 @@ This was the first adventure in multithreading, mutexes, and the joys of data ra
 
 ## 🧐 So What's the Deal?
 - **`Each philosopher has a fork`** since that's all they can afford.
-- **`But, they need two forks to eat`** for maximum face-stuffing.
+- **`But,they need two forks to eat`** for maximum face-stuffing.
 - **`So they use their neighbor's fork`** because hygiene.
 
 The trick here is to allocate forks in such a way so that the philosophers don't all hold on to one fork, never grab a second fork, and all starve to death. (Which is funny, but wrong 🙄). Also, the philosophers don't talk to each other. And there cannot be data races (for non-nerds, that means you cannot be updating a value at the same time it's being read by another thread. In a real life scenario this can be disasterous. Here it's just mildly annoying).
