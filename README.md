@@ -46,7 +46,7 @@ The program takes the following arguments:
 
 If you don't tell the philosophers to stop eating after N number of meals, they'll continue to gorge themselves in perpetuity.
 
-`Just like I do.`
+`Another dream of mine.`
 
 The program will take up to 250 philosophers, but you will notice that there will start to be some time-slippage that results from the computer hardware starting to fall behind when starting/pausing/evaluating threads. It's slow, but noticeable, and will eventually result in someone starving.
 
