@@ -51,4 +51,4 @@ The program will take up to 250 philosophers, but you will notice that there wil
 Unless your computer is at NASA or CERN, in which case you can disregard this warning.
 
 ### 📝 License
-Distributed under the MIT License. See [LICENSE](LICENSE) for more information.
+My inner philosopher tells says that information wants out, so feel free to have copy/paste/starve philosophers to your heart's content.
